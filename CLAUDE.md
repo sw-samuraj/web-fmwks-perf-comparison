@@ -23,22 +23,16 @@ gh auth switch --user sw-samuraj   # if vita-kotacka is currently active
 1. Create a GitHub issue, assigned to `sw-samuraj`
 2. Create a branch: `issue/<number>-<short-description>`
 3. Implement the changes
-4. Push and open a PR — rebase merge only (repo enforces this)
+4. Push and open a PR — squash merge only (repo enforces this)
 
 ## Branch Protection
 
 `master` has an active ruleset (`master-ruleset`) enforcing:
 - No direct pushes — all changes via PR
-- Rebase-only merges
+- Squash-only merges
 - Required signed commits
 
-To force-push (e.g. to fix commit authorship), temporarily disable and re-enable the ruleset:
-
-```bash
-gh api --method PUT repos/sw-samuraj/web-fmwks-perf-comparison/rulesets/18125329 --field enforcement=disabled
-git push --force-with-lease origin master
-gh api --method PUT repos/sw-samuraj/web-fmwks-perf-comparison/rulesets/18125329 --field enforcement=active
-```
+GitHub signs squash commits with its own GPG key, so `gh pr merge --squash` satisfies the signature requirement without any local workaround.
 
 ## Repo Map
 
