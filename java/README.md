@@ -1,16 +1,22 @@
-# Using java sparkjava web framework for performance test
+# Java REST example
 
-## Compile
+Uses the JDK stdlib `com.sun.net.httpserver` with virtual threads (Project Loom).
+No external dependencies.
+
+## Requirements
+
+- JDK 25
+
+## Build
 
 ```
-mvn clean package
+./gradlew jar
 ```
 
-## Build native image
+## Run
 
 ```
-native-image -cp target/java-rest-service-1.0-SNAPSHOT-jar-with-dependencies.jar  -H:Name=helloworld -H:Class=net.mixaal.poc.java.Hello -H:+JNI
-./helloworld
+java -jar build/libs/java-rest-service.jar
 ```
 
 ## Test performance
