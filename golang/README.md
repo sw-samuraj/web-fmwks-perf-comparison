@@ -1,15 +1,15 @@
-# Golang Restful example
+# Golang REST example
 
-## Get gorilla/mux
+Uses the standard library `net/http.ServeMux` with Go 1.22+ method-qualified routing. No external dependencies.
+
+## Requirements
+
+- Go 1.22+
+
+## Run
 
 ```
-go get github.com/gorilla/mux
-```
-
-## Compile and run
-
-```
-go run go-rest.go
+go run .
 ```
 
 ## Test performance
@@ -17,4 +17,3 @@ go run go-rest.go
 ```
 ab -n 1000 -c 4 http://localhost:8000/
 ```
-
