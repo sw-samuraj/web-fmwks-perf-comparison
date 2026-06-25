@@ -1,17 +1,17 @@
 package main
 
 import (
-	"net/http"
-	"github.com/gorilla/mux"
 	"log"
+	"net/http"
 )
 
-func GetPeople(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello world!"))
+func helloWorld(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/plain")
+	w.Write([]byte("Hello, world!"))
 }
 
 func main() {
-	router := mux.NewRouter()
-	router.HandleFunc("/", GetPeople).Methods("GET")
-	log.Fatal(http.ListenAndServe(":8000", router))
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /", helloWorld)
+	log.Fatal(http.ListenAndServe(":8000", mux))
 }
